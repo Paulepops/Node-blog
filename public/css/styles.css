@@ -11048,6 +11048,11 @@ blockquote {
 #mainNav .navbar-brand {
   font-weight: 800;
 }
+#mailNav .navbar-brand img {
+  margin-right: 5px;
+  position: relative;
+}
+
 #mainNav .navbar-toggler {
   font-size: 0.75rem;
   font-weight: 800;
