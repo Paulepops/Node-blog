@@ -55,10 +55,12 @@ app.get('/contact', contactController)
 const newPostController = require('./controllers/newPost')
 const storePostController = require('./controllers/storePost')
 const getPostController = require('./controllers/getPost')
+const listPostsController = require('./controllers/listPosts')
 
 app.get('/post/:id', getPostController)
 app.get('/posts/new', userAuth, newPostController)
 app.post('/posts/store', userAuth, storePostController)
+app.get('/posts/older', listPostsController)
 
 const newUserController = require('./controllers/newUser')
 const storeUserController = require('./controllers/storeUser')
