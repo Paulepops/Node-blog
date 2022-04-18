@@ -1,4 +1,4 @@
-assets
-node_modules
-tests
+assets/
+node_modules/
+tests/
 folder.jpg
