@@ -1,52 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include('layouts/header'); -%>
-    <body>
-        <%- include('layouts/navbar'); -%>
-        <!-- Page Header-->
-        <header class="masthead" style="background-image: url('/img/home-bg.jpg')">
-            <div class="container position-relative px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-md-10 col-lg-8 col-xl-7">
-                        <div class="site-heading">
-                            <h1>Older Posts</h1>
-                            <span class="subheading">A Blog Theme by Start Bootstrap</span>
-                        </div>
+<%- include('layouts/header'); -%>
+
+<body>
+    <%- include('layouts/navbar'); -%>
+    <!-- Page Header-->
+    <header class="masthead" style="background-image: url('/img/home-bg.jpg')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h1>Older Posts</h1>
+                        <span class="subheading">A Blog Theme by Start Bootstrap</span>
                     </div>
                 </div>
             </div>
-        </header>
-        <!-- Main Content-->
-        <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
-                    <!-- Post preview-->
-                        <% for (var i = 0; i < blogposts.length; i++){ %>
-                        <div class="post-preview">
-                            <a href="/post/<%= blogposts[i]._id %>">
-                                <h2 class="post-title"><%= blogposts[i].title %></h2>
-                                <h3 class="post-subtitle"><%= blogposts[i].tagline %></h3>
-                            </a>
-                            <p class="post-meta">
-                                Posted by
+        </div>
+    </header>
+    <!-- Main Content-->
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <!-- Post preview-->
+                <input type='hidden' id='current_page' />
+                <input type='hidden' id='show_per_page' />
+                <div id="pagingBox" class="post-preview">
+                <% for (var i = 0; i < blogposts.length; i++){ %>
+                    <div class="pagingChild">
+                        <a href="/post/<%= blogposts[i]._id %>">
+                            <h2 class="post-title"><%= blogposts[i].title %></h2>
+                            <h3 class="post-subtitle"><%= blogposts[i].tagline %></h3>
+                        </a>
+                        <p class="post-meta">
+                            Posted by
                             <b><a href="#!"><%= blogposts[i].userid.username %></a></b>
-                                on <%= blogposts[i].datePosted.toDateString() %>
-                            </p>
-                        </div>
+                            on <%= blogposts[i].datePosted.toDateString() %>
+                        </p>
                         <!-- Divider-->
                         <hr class="my-4" />
-                    <% } %>
-                    <!-- Pager-->
-                    <!-- IF FIRST PAGE OF LISTING 
-                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts &#129146;</a></div>
-                    <!-- IF MIDDLE PAGE(S) OF LISTING 
-                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">&#129144; Newer Posts</a> <a class="btn btn-primary text-uppercase" href="#!">Older Posts &#129146;</a></div>
-                    <!-- IF LAST PAGE OF LISTING -->
-                    <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">&#129144; Newer Posts</a> </div>
+                    </div>
+                <% } %>
                 </div>
+                <!-- Pager-->
+                <div id='page_navigation'></div>
+                <!-- IF FIRST PAGE OF LISTING 
+                <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase"
+                        href="#!">&#129144; Newer Posts</a> </div>
+                -->
             </div>
         </div>
-        <%- include('layouts/footer'); -%>
-        <%- include('layouts/scripts'); -%>
-    </body>
+    </div>
+    <%- include('layouts/footer'); -%>
+    <%- include('layouts/scripts'); -%>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // Source: https://codepen.io/flex4web/pen/PKwPov
+        jQuery(document).ready(function () {
+
+            //Pagination JS
+            //how much items per page to show
+            var show_per_page = 4;
+            //getting the amount of elements inside pagingBox div
+            var number_of_items = <%= blogposts.length %> //$('#pagingBox').children().size();
+            //calculate the number of pages we are going to have
+            var number_of_pages = Math.ceil(number_of_items / show_per_page);
+
+            //set the value of our hidden input fields
+            $('#current_page').val(0);
+            $('#show_per_page').val(show_per_page);
+
+            //now when we got all we need for the navigation let's make it '
+
+            /* 
+            what are we going to have in the navigation?
+                - link to previous page
+                - links to specific pages
+                - link to next page
+            */
+            var navigation_html = '<a class="previous_link" href="javascript:previous();">Prev</a>';
+            var current_link = 0;
+            while (number_of_pages > current_link) {
+                navigation_html += '<a class="page_link" href="javascript:go_to_page(' + current_link +
+                    ')" longdesc="' + current_link + '">' + (current_link + 1) + '</a>';
+                current_link++;
+            }
+            navigation_html += '<a class="next_link" href="javascript:next();">Next</a>';
+
+            $('#page_navigation').html(navigation_html);
+
+            //add active_page class to the first page link
+            $('#page_navigation .page_link:first').addClass('active_page');
+
+            //hide all the elements inside pagingBox div
+            $('#pagingBox').children().css('display', 'none');
+
+            //and show the first n (show_per_page) elements
+            $('#pagingBox').children().slice(0, show_per_page).css('display', 'block');
+
+        });
+
+        //Pagination JS
+
+        function previous() {
+            new_page = parseInt($('#current_page').val()) - 1;
+            //if there is an item before the current active link run the function
+            if ($('.active_page').prev('.page_link').length == true) {
+                go_to_page(new_page);
+            }
+        }
+
+        function next() {
+            new_page = parseInt($('#current_page').val()) + 1;
+            //if there is an item after the current active link run the function
+            if ($('.active_page').next('.page_link').length == true) {
+                go_to_page(new_page);
+            }
+        }
+
+        function go_to_page(page_num) {
+            //get the number of items shown per page
+            var show_per_page = parseInt($('#show_per_page').val());
+
+            //get the element number where to start the slice from
+            start_from = page_num * show_per_page;
+
+            //get the element number where to end the slice
+            end_on = start_from + show_per_page;
+
+            //hide all children elements of pagingBox div, get specific items and show them
+            $('#pagingBox').children().css('display', 'none').slice(start_from, end_on).css('display', 'block');
+
+            /*get the page link that has longdesc attribute of the current page and add active_page class to it
+            and remove that class from previously active page link*/
+            $('.page_link[longdesc=' + page_num + ']').addClass('active_page').siblings('.active_page').removeClass(
+                'active_page');
+
+            //update the current page input field
+            $('#current_page').val(page_num);
+        }
+    </script>
+</body>
+
 </html>
