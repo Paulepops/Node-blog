@@ -6,11 +6,9 @@ Learning Node.js, Express and MongoDB by creating a basic blog app
 
 Node.js, Express & MongoBD in a weekend
 
-## Author: Greg Lim 
-
-Twitter: https://twitter.com/greglim81
-
-GitHub: https://github.com/greglim81
+- Author: Greg Lim 
+- Twitter: https://twitter.com/greglim81
+- GitHub: https://github.com/greglim81
 
 ## Course Description:
 
