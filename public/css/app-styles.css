@@ -1,20 +1,35 @@
 
+h3.post-subtitle {
+    font-weight: 200;
+}
+
 /* Pagination CSS - used in OlderPosts.ejs */
 
 #page_navigation {
-    clear:both;
+    clear: both;
     margin: 20px 0;
 }
 
-#page_navigation a{
-    padding:3px 6px;
-    border:1px solid #2e6da4;
-    margin:2px;
-    color:black;
-    text-decoration:none
+#page_navigation a {
+    padding: 10px;
+    border: 1px solid #000;
+    margin: 2px;
+    color: #fff;
+    background-color: #6c757d;
+    text-decoration: none;
+    text-transform: uppercase !important;
 }
 
-.active_page{
-    background:#337ab7;
-    color:white !important;
+#page_navigation a:hover {
+    padding: 10px;
+    border: 1px solid #000;
+    margin: 2px;
+    color: #fff;
+    background-color: #4c4f52;
+    text-decoration: none;
+}
+
+#page_navigation a.active_page {
+    background: #337ab7;
+    color: white !important;
 }
