@@ -1,6 +1,6 @@
 # node-blog
 
-Learning Node.js, Express and MongoDB by creating a basic blog app
+The results of learning Node.js, Express and MongoDB by creating a basic blog app.
 
 ## Udemy course: 
 
