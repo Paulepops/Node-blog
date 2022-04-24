@@ -1,0 +1,67 @@
+
+DEPLOYING THIS CODE 
+
+    git config --global user.name "Paulepops"  
+    git config --global user.email "sorroko-dev@outlook.com"   
+
+---------------------------
+TO LOCAL HOST
+---------------------------
+
+    (Open MongoDB Compass)
+
+    npm start               // start the localhost server 
+
+    SITE: http://localhost:3000/
+
+---------------------------
+TO HEROKU
+---------------------------
+
+    (create repot on heroku first)
+
+    heroku create           // create remote connection to Heroku server
+
+    git push heroku master  // push 'master' branch to 'heroku' remote
+
+    heroku ps:scale web=1   // 
+
+    heroku open             // open the website after deployment
+
+    SITE: https://rocky-brook-40341.herokuapp.com/
+
+    heroku repo: https://git.heroku.com/rocky-brook-40341.git
+
+    heroku git:clone -a rocky-brook-40341  // get the repo from heroku
+
+--------------------------
+TO GITHUB
+--------------------------
+
+    (create repo on GitHub first)
+
+    git remote add github https://github.com/Paulepops/node-blog   // Create GitHub connection
+
+    git push github master  // push 'master' branch to 'github' remote
+
+--------------------------
+NEW SSH KEY
+--------------------------
+
+New SSH key: ssh-keygen -t ed25519 -C "sorroko-dev@outlook.com"
+Passphrase: <BLANK>
+Your identification has been saved in C:\Users\Owner/.ssh/id_ed25519
++--[ED25519 256]--+
+|  .o+o. .o.oo    |
+| ..o +.+o +..o.  |
+|  o = @o...o.... |
+|.o + O +..  ...  |
+|o o o +oS.   .   |
+| . o o..=.. E    |
+|  . o  o +.      |
+|   .     .o      |
+|          ..     |
++----[SHA256]-----+
+Your public key has been saved in C:\Users\Owner/.ssh/id_ed25519.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEF0c1wir6KpFx8sMhke4vrdXbsSJBMDlrI6Gd1juMaF sorroko-dev@outlook.com
+
