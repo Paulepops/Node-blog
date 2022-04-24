@@ -4,7 +4,7 @@
 
 <body>
     <%- include('layouts/navbar'); -%>
-    <!-- Page Header-->
+    <!-- Page Header -->
     <header class="masthead" style="background-image: url('/img/home-bg.jpg')">
         <div class="container position-relative px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -17,39 +17,40 @@
             </div>
         </div>
     </header>
-    <!-- Main Content-->
-    <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                <!-- Post preview-->
+    <!-- Main Content -->
+    <div class="container px-4 px-lg-6">
+        <div class="row gx-4 gx-lg-5">         
+            <div class="postList">
+                <!-- Post preview -->
                 <input type='hidden' id='current_page' />
                 <input type='hidden' id='show_per_page' />
-                <div id="pagingBox" class="post-preview">
+                <ul id="pagingBox">
                 <% for (var i = 0; i < blogposts.length; i++){ %>
-                    <div class="pagingChild">
-                        <a href="/post/<%= blogposts[i]._id %>">
-                            <h2 class="post-title"><%= blogposts[i].title %></h2>
-                            <h3 class="post-subtitle"><%= blogposts[i].tagline %></h3>
-                        </a>
-                        <p class="post-meta">
-                            Posted by
-                            <b><a href="#!"><%= blogposts[i].userid.username %></a></b>
-                            on <%= blogposts[i].datePosted.toDateString() %>
-                        </p>
-                        <!-- Divider-->
-                        <hr class="my-4" />
+                    <li class="postItem">
+                    <a href="/post/<%= blogposts[i]._id %>">
+                    <div class="postBox">
+                        <div class="postPic">
+                            <img src="<%= blogposts[i].image %>" alt="<%= blogposts[i].title %>" border="0">
+                        </div>
+                        <div class="postInfo">
+                            <div class="info">
+                                <h2><%= blogposts[i].title %></h2>
+                                <p class="tag-line"><%= blogposts[i].tagline %></h3>
+                                <p>Posted by <b><a href="#!"><%= blogposts[i].userid.username %></a></b></p>
+                                <p>Posted on <%= blogposts[i].datePosted.toDateString() %></p>
+                            </div>
+                        </div>
                     </div>
+                    </a>
+                    </li>
                 <% } %>
-                </div>
-                <!-- Pager-->
-                <div id='page_navigation'></div>
-                <!-- IF FIRST PAGE OF LISTING 
-                <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase"
-                        href="#!">&#129144; Newer Posts</a> </div>
-                -->
+                </ul>
             </div>
+            <!-- Pager -->
+            <div id='page_navigation' class="d-flex justify-content-end mb-4"></div>
         </div>
     </div>
+
     <%- include('layouts/footer'); -%>
     <%- include('layouts/scripts'); -%>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -58,8 +59,8 @@
         jQuery(document).ready(function () {
 
             //Pagination JS
-            //how much items per page to show
-            var show_per_page = 4;
+            //how many items per page to show
+            var show_per_page = 10;
             //getting the amount of elements inside pagingBox div
             var number_of_items = <%= blogposts.length %> //$('#pagingBox').children().size();
             //calculate the number of pages we are going to have

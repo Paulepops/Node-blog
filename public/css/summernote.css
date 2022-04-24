@@ -347,8 +347,8 @@
 .note-editor.note-frame .note-status-output .text-success {
   color: #3c763d;
 }
-.note-editor.note-airframe .note-status-output .text-info,
-.note-editor.note-frame .note-status-output .text-info {
+.note-editor.note-airframe .note-status-output .tag-info,
+.note-editor.note-frame .note-status-output .tag-info {
   color: #31708f;
 }
 .note-editor.note-airframe .note-status-output .text-warning,
