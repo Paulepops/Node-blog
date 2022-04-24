@@ -18,6 +18,7 @@ const BlogPostSchema = new Schema({
         ref: 'User',
         required: true
     },
+    category: String,
     datePosted: {
         type: Date,
         default: new Date()

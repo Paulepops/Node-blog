@@ -14,10 +14,11 @@ h3.post-subtitle {
     padding: 10px;
     border: 1px solid #000;
     margin: 2px;
-    color: #fff;
-    background-color: #6c757d;
+    color: #000;
+    background-color: #fff;
     text-decoration: none;
     text-transform: uppercase !important;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, san-serif;
 }
 
 #page_navigation a:hover {
@@ -25,12 +26,12 @@ h3.post-subtitle {
     border: 1px solid #000;
     margin: 2px;
     color: #fff;
-    background-color: #4c4f52;
+    background-color: #6c757d;
     text-decoration: none;
 }
 
 #page_navigation a.active_page {
-    background: #337ab7;
+    background-color: #337ab7;
     color: white !important;
 }
 
@@ -106,4 +107,27 @@ h3.post-subtitle {
     overflow: hidden;
     text-overflow: ellipsis;
     text-align: center;
+}
+
+.post-cat-pill {
+    color: #fff;
+    background: #0a910a;
+    width: fit-content;
+    padding: 2px 15px;
+    border-radius: 25px;
+    margin: 0;
+    font-size: .9rem;
+    text-transform: uppercase;
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, san-serif;
+    font-weight: 700;
+}
+
+.postBox .postInfo .post-cat-pill {
+    position: relative;
+    background: rgba(3, 51, 3, 0.5);
+    float: right;
+}
+
+.masthead  .post-cat-pill {
+    margin-top: 20px;
 }

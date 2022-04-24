@@ -20,7 +20,7 @@ TO HEROKU
 
     (create repot on heroku first)
 
-    heroku create           // create remote connection to Heroku server
+    heroku login            // connect to Heroku server
 
     git push heroku master  // push 'master' branch to 'heroku' remote
 

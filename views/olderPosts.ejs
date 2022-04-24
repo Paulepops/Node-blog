@@ -27,8 +27,8 @@
                 <ul id="pagingBox">
                 <% for (var i = 0; i < blogposts.length; i++){ %>
                     <li class="postItem">
-                    <a href="/post/<%= blogposts[i]._id %>">
                     <div class="postBox">
+                        <a href="/post/<%= blogposts[i]._id %>">
                         <div class="postPic">
                             <img src="<%= blogposts[i].image %>" alt="<%= blogposts[i].title %>" border="0">
                         </div>
@@ -38,10 +38,11 @@
                                 <p class="tag-line"><%= blogposts[i].tagline %></h3>
                                 <p>Posted by <b><a href="#!"><%= blogposts[i].userid.username %></a></b></p>
                                 <p>Posted on <%= blogposts[i].datePosted.toDateString() %></p>
+                                <p class="post-cat-pill"><%= blogposts[i].category %></p>
                             </div>
                         </div>
+                        </a>
                     </div>
-                    </a>
                     </li>
                 <% } %>
                 </ul>
