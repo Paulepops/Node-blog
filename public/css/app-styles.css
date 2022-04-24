@@ -48,7 +48,7 @@ h3.post-subtitle {
 }
 
 .postList ul li {
-    display: inline-block;
+    /* display: inline-block; */
     width: 240px;
     float: left;
     margin-right: 10px;

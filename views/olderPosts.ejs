@@ -63,7 +63,8 @@
             //how many items per page to show
             var show_per_page = 10;
             //getting the amount of elements inside pagingBox div
-            var number_of_items = <%= blogposts.length %> //$('#pagingBox').children().size();
+            // var number_of_items = $('#pagingBox').children().size();
+            var number_of_items = <%= blogposts.length %>; 
             //calculate the number of pages we are going to have
             var number_of_pages = Math.ceil(number_of_items / show_per_page);
 
